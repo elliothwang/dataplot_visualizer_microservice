@@ -164,6 +164,9 @@ class DataPlotVisualizerTests(unittest.TestCase):
         # content should not be empty
         self.assertGreater(len(resp.data), 0)
 
+        # close response to avoid unclosed file warnings
+        resp.close()
+
     def test_download_missing_plot_returns_404(self):
         resp = self.client.get("/plots/does-not-exist")
         self.assertEqual(resp.status_code, 404)

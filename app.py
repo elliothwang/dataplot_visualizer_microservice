@@ -1,6 +1,6 @@
 import os
 import uuid
-from datetime import datetime
+from datetime import datetime, UTC
 
 # use a non-interactive backend for headless environments
 import matplotlib
@@ -113,7 +113,7 @@ def _generate_plot_file(x_values, y_values, meta):
     fig.savefig(file_path, dpi=120)
     plt.close(fig)
 
-    created_at = datetime.utcnow().isoformat() + "Z"
+    created_at = datetime.now(UTC).isoformat()
 
     PLOTS[plot_id] = {
         "path": file_path,
